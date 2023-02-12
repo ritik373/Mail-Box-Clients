@@ -3,10 +3,13 @@ import { Link, useNavigate } from 'react-router-dom';
 import classes from './Login.module.css'
 // import { authContext } from '../AuthContextTokin/AuthContextTokin';
 // import { useContext } from 'react';
+import { authCompose } from '../../store/authRedux';
+import { useDispatch } from 'react-redux';
 
 
 function Login(props) {
-  // const AuthContext=useContext(authContext);
+  const dispatch=useDispatch();
+  
   const emailInputRef = useRef()
   const passwordInputRef = useRef()
   const navigate=useNavigate()
@@ -27,8 +30,9 @@ function Login(props) {
         // console.log("something went wrong",res)
         if(res.ok){
           return res.json().then((responce)=>{
-            console.log(responce)
-            navigate('/userpage',{replace:true})
+            // console.log(responce.idToken)
+            dispatch(authCompose.onLoginHander(responce.email))
+            navigate('/inbox',{replace:true})
       
 
           })
