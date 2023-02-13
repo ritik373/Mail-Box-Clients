@@ -43,7 +43,7 @@ function ComposeMail(props) {
                 to: email,
                 subject: subject,
                 message: editorState.getCurrentContent().getPlainText(),
-                date: new Date().toDateString(),
+                date: new Date().toLocaleDateString(),
 
 
             }),
@@ -67,7 +67,7 @@ function ComposeMail(props) {
                 to: email,
                 subject: subject,
                 message: editorState.getCurrentContent().getPlainText(),
-                date: new Date().toDateString(),
+                date: new Date().toLocaleString(),
 
 
             }),
@@ -80,7 +80,11 @@ function ComposeMail(props) {
             } else {
                 console.log('successfull');
                 console.log(sender);
+
+                setEmail('');
+                setSubject('')
             }
+
         })
 
 
